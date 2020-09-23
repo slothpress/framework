@@ -1,0 +1,77 @@
+{
+    "name": "slothpress/framework",
+    "description": "The SlothPress framework.",
+    "keywords": [
+        "slothpress",
+        "framework",
+        "wordpress"
+    ],
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Ben Kremer",
+            "email": "ben@slothpress.org",
+            "homepage": "https://benkremer.de"
+        }
+    ],
+    "require": {
+        "php": ">=7.2.0",
+        "illuminate/config": "^7.28",
+        "illuminate/container": "^7.28",
+        "illuminate/events": "^7.28",
+        "illuminate/filesystem": "^7.28",
+        "illuminate/http": "^7.28",
+        "illuminate/log": "^7.28",
+        "illuminate/routing": "^7.28",
+        "illuminate/support": "^7.28",
+        "jgrossi/corcel": "^4.0",
+        "oohology/gitignorewriter": "^1.1",
+        "roots/bedrock-autoloader": "^1.0",
+        "roots/wp-config": "^1.0",
+        "roots/wp-password-bcrypt": "^1.0"
+    },
+    "require-dev": {
+        "brainmaestro/composer-git-hooks": "^2.8",
+        "ergebnis/composer-normalize": "^2.8",
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "phpunit/phpunit": "^8.5",
+        "roave/security-advisories": "dev-master"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "hooks": {
+            "pre-commit": [
+                "vendor/bin/php-cs-fixer fix",
+                "composer normalize"
+            ],
+            "pre-push": [
+                "vendor/bin/php-cs-fixer fix",
+                "vendor/bin/phpunit"
+            ],
+            "post-merge": "composer install"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "SlothPress\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "post-install-cmd": [
+            "vendor/bin/cghooks add --ignore-lock",
+            "@composer normalize"
+        ],
+        "post-update-cmd": [
+            "vendor/bin/cghooks update",
+            "@composer normalize"
+        ]
+    },
+    "support": {
+        "issues": "https://github.com/slothpress/framework/issues",
+        "source": "https://github.com/slothpress/framework"
+    }
+}

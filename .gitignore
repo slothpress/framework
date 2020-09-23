@@ -1,0 +1,11 @@
+# Miscellaneous
+.DS_Store
+Thumbs.db
+.idea/
+
+# Framework
+/vendor
+composer.lock
+composer.phar
+/.php_cs.cache
+/.phpunit.result.cache
